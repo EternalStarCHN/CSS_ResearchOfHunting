@@ -1,0 +1,62 @@
+﻿  autocarDlg.cpp
+g:\desktop\debugrob_camerapatrol\autocar\opencv\opencv2\flann\logger.h(66): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\stdio.h(208): note: 参见“fopen”的声明
+g:\desktop\debugrob_camerapatrol\autocar\tesseract\strngs.h(72): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\string.h(338): note: 参见“strncpy”的声明
+g:\desktop\debugrob_camerapatrol\autocar\autocardlg.cpp(129): warning C4407: 在指向成员表示形式的不同指针之间进行强制转换，编译器可能生成不正确的代码
+g:\desktop\debugrob_camerapatrol\autocar\autocardlg.cpp(130): warning C4407: 在指向成员表示形式的不同指针之间进行强制转换，编译器可能生成不正确的代码
+g:\desktop\debugrob_camerapatrol\autocar\autocardlg.cpp(131): warning C4407: 在指向成员表示形式的不同指针之间进行强制转换，编译器可能生成不正确的代码
+g:\desktop\debugrob_camerapatrol\autocar\autocardlg.cpp(132): warning C4407: 在指向成员表示形式的不同指针之间进行强制转换，编译器可能生成不正确的代码
+g:\desktop\debugrob_camerapatrol\autocar\autocardlg.cpp(134): warning C4407: 在指向成员表示形式的不同指针之间进行强制转换，编译器可能生成不正确的代码
+g:\desktop\debugrob_camerapatrol\autocar\autocardlg.cpp(136): warning C4407: 在指向成员表示形式的不同指针之间进行强制转换，编译器可能生成不正确的代码
+g:\desktop\debugrob_camerapatrol\autocar\autocardlg.cpp(137): warning C4407: 在指向成员表示形式的不同指针之间进行强制转换，编译器可能生成不正确的代码
+g:\desktop\debugrob_camerapatrol\autocar\autocardlg.cpp(138): warning C4407: 在指向成员表示形式的不同指针之间进行强制转换，编译器可能生成不正确的代码
+g:\desktop\debugrob_camerapatrol\autocar\autocardlg.cpp(139): warning C4407: 在指向成员表示形式的不同指针之间进行强制转换，编译器可能生成不正确的代码
+g:\desktop\debugrob_camerapatrol\autocar\autocardlg.cpp(140): warning C4407: 在指向成员表示形式的不同指针之间进行强制转换，编译器可能生成不正确的代码
+g:\desktop\debugrob_camerapatrol\autocar\autocardlg.cpp(141): warning C4407: 在指向成员表示形式的不同指针之间进行强制转换，编译器可能生成不正确的代码
+g:\desktop\debugrob_camerapatrol\autocar\autocardlg.cpp(142): warning C4407: 在指向成员表示形式的不同指针之间进行强制转换，编译器可能生成不正确的代码
+g:\desktop\debugrob_camerapatrol\autocar\autocardlg.cpp(143): warning C4407: 在指向成员表示形式的不同指针之间进行强制转换，编译器可能生成不正确的代码
+g:\desktop\debugrob_camerapatrol\autocar\autocardlg.cpp(144): warning C4407: 在指向成员表示形式的不同指针之间进行强制转换，编译器可能生成不正确的代码
+g:\desktop\debugrob_camerapatrol\autocar\autocardlg.cpp(145): warning C4407: 在指向成员表示形式的不同指针之间进行强制转换，编译器可能生成不正确的代码
+g:\desktop\debugrob_camerapatrol\autocar\autocardlg.cpp(191): warning C4309: “=”: 截断常量值
+g:\desktop\debugrob_camerapatrol\autocar\autocardlg.cpp(365): warning C4018: “<”: 有符号/无符号不匹配
+g:\desktop\debugrob_camerapatrol\autocar\autocardlg.cpp(410): warning C4838: 从“PointMode_t”转换到“const char”需要收缩转换
+g:\desktop\debugrob_camerapatrol\autocar\autocardlg.cpp(772): warning C4018: “<”: 有符号/无符号不匹配
+g:\desktop\debugrob_camerapatrol\autocar\autocardlg.cpp(775): warning C4018: “<”: 有符号/无符号不匹配
+g:\desktop\debugrob_camerapatrol\autocar\autocardlg.cpp(895): warning C4018: “<”: 有符号/无符号不匹配
+g:\desktop\debugrob_camerapatrol\autocar\autocardlg.cpp(898): warning C4018: “<”: 有符号/无符号不匹配
+g:\desktop\debugrob_camerapatrol\autocar\autocardlg.cpp(1001): warning C4018: “<”: 有符号/无符号不匹配
+g:\desktop\debugrob_camerapatrol\autocar\autocardlg.cpp(1004): warning C4018: “<”: 有符号/无符号不匹配
+g:\desktop\debugrob_camerapatrol\autocar\autocardlg.cpp(1092): warning C4838: 从“int”转换到“const char”需要收缩转换
+g:\desktop\debugrob_camerapatrol\autocar\autocardlg.cpp(1183): warning C4244: “=”: 从“int”转换到“_Tp”，可能丢失数据
+          with
+          [
+              _Tp=float
+          ]
+g:\desktop\debugrob_camerapatrol\autocar\autocardlg.cpp(1184): warning C4244: “=”: 从“int”转换到“_Tp”，可能丢失数据
+          with
+          [
+              _Tp=float
+          ]
+g:\desktop\debugrob_camerapatrol\autocar\autocardlg.cpp(1185): warning C4244: “=”: 从“double”转换到“_Tp”，可能丢失数据
+          with
+          [
+              _Tp=float
+          ]
+g:\desktop\debugrob_camerapatrol\autocar\autocardlg.cpp(1186): warning C4244: “=”: 从“double”转换到“_Tp”，可能丢失数据
+          with
+          [
+              _Tp=float
+          ]
+g:\desktop\debugrob_camerapatrol\autocar\autocardlg.cpp(1187): warning C4244: “=”: 从“double”转换到“_Tp”，可能丢失数据
+          with
+          [
+              _Tp=float
+          ]
+g:\desktop\debugrob_camerapatrol\autocar\autocardlg.cpp(1197): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+  正在生成代码
+  2 of 696 functions ( 0.3%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    4 functions had inline decision re-evaluated but remain unchanged
+  已完成代码的生成
+  autocar.vcxproj -> G:\Desktop\DebugRob_CameraPatrol\Release\autocar.exe
