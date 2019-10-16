@@ -251,12 +251,12 @@ PUTCHAR_PROTOTYPE
 */
 void Command_Usart_Rx_Interupt(void)
 {
-    uint8_t sum = 0;
+//    uint8_t sum = 0;
 
-    sum = _Command_RxBuffer[0] + _Command_RxBuffer[1] + _Command_RxBuffer[2] + _Command_RxBuffer[3];
+//    sum = _Command_RxBuffer[0] + _Command_RxBuffer[1] + _Command_RxBuffer[2] + _Command_RxBuffer[3];
 
     //校验和检查失败
-    if(sum != _Command_RxBuffer[4])
+    if(_Command_RxBuffer[4] != 'A')
     {
         _Invalid_Data = 1;
 
