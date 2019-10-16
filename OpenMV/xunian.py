@@ -39,13 +39,11 @@ while(True):
         else:
             t_ss = 1
             theta_ss = json.dumps(t_ss)
-        five = 6
-        fif = json.dumps(five)
+        verify = 'A'
         uart.write(rho_ss)
         uart.write(abs_rho)
         uart.write(theta_ss)
         uart.write(abs_theta)
-        uart.write(fif)
-        uart.write('\n')
+        uart.write(verify)
     pass
     #print(clock.fps())
