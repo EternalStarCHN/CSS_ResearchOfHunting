@@ -1,26 +1,26 @@
 stm32f40_41xxx\shell.o: ..\Shell\SHELL.c
 stm32f40_41xxx\shell.o: ..\Shell_H\SHELL.h
 stm32f40_41xxx\shell.o: ../main.h
-stm32f40_41xxx\shell.o: D:\SoftWare\Keil MDK-ARM\ARM\ARMCC\Bin\..\include\stdint.h
+stm32f40_41xxx\shell.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 stm32f40_41xxx\shell.o: ..\_Layer\systick.h
 stm32f40_41xxx\shell.o: ..\_Logic\line.h
 stm32f40_41xxx\shell.o: ..\_Layer\encoder.h
-stm32f40_41xxx\shell.o: D:\SoftWare\Keil MDK-ARM\ARM\ARMCC\Bin\..\include\stdio.h
+stm32f40_41xxx\shell.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 stm32f40_41xxx\shell.o: ..\_Layer\buttom.h
 stm32f40_41xxx\shell.o: ../main.h
-stm32f40_41xxx\shell.o: D:\SoftWare\Keil MDK-ARM\ARM\ARMCC\Bin\..\include\math.h
+stm32f40_41xxx\shell.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 stm32f40_41xxx\shell.o: ..\_Layer\gyro.h
 stm32f40_41xxx\shell.o: ../magic.h
 stm32f40_41xxx\shell.o: ..\_Layer\laser.h
 stm32f40_41xxx\shell.o: ..\_Layer\serial.h
-stm32f40_41xxx\shell.o: D:\SoftWare\Keil MDK-ARM\ARM\ARMCC\Bin\..\include\string.h
+stm32f40_41xxx\shell.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 stm32f40_41xxx\shell.o: ../../../Libraries/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_iwdg.h
 stm32f40_41xxx\shell.o: ../../../Libraries/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h
-stm32f40_41xxx\shell.o: D:\SoftWare\Keil MDK-ARM\PACK\ARM\CMSIS\5.5.1\CMSIS\Core\Include\core_cm4.h
-stm32f40_41xxx\shell.o: D:\SoftWare\Keil MDK-ARM\PACK\ARM\CMSIS\5.5.1\CMSIS\Core\Include\cmsis_version.h
-stm32f40_41xxx\shell.o: D:\SoftWare\Keil MDK-ARM\PACK\ARM\CMSIS\5.5.1\CMSIS\Core\Include\cmsis_compiler.h
-stm32f40_41xxx\shell.o: D:\SoftWare\Keil MDK-ARM\PACK\ARM\CMSIS\5.5.1\CMSIS\Core\Include\cmsis_armcc.h
-stm32f40_41xxx\shell.o: D:\SoftWare\Keil MDK-ARM\PACK\ARM\CMSIS\5.5.1\CMSIS\Core\Include\mpu_armv7.h
+stm32f40_41xxx\shell.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\core_cm4.h
+stm32f40_41xxx\shell.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\cmsis_version.h
+stm32f40_41xxx\shell.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\cmsis_compiler.h
+stm32f40_41xxx\shell.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\cmsis_armcc.h
+stm32f40_41xxx\shell.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\mpu_armv7.h
 stm32f40_41xxx\shell.o: ../../../Libraries/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h
 stm32f40_41xxx\shell.o: ../stm32f4xx_conf.h
 stm32f40_41xxx\shell.o: ../../../Libraries/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_adc.h
@@ -64,7 +64,7 @@ stm32f40_41xxx\shell.o: ..\MDK-ARM\UpHillOrDownHill.h
 stm32f40_41xxx\shell.o: ..\_Methond\SKILL.h
 stm32f40_41xxx\shell.o: ..\MDK-ARM\UpHillOrDownHill.h
 stm32f40_41xxx\shell.o: ..\_Logic\motor_turn.h
-stm32f40_41xxx\shell.o: D:\SoftWare\Keil MDK-ARM\ARM\ARMCC\Bin\..\include\stdlib.h
+stm32f40_41xxx\shell.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 stm32f40_41xxx\shell.o: ..\MDK-ARM\UpHillOrDownHill.h
 stm32f40_41xxx\shell.o: ..\_Layer\supersonic.h
 stm32f40_41xxx\shell.o: ..\Shell_H\SHELL.h
