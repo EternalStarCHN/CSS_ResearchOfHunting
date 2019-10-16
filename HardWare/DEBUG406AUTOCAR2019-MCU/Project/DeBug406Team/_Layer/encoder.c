@@ -119,7 +119,7 @@ float Encoder_GetLWheelSpeed(void)
 #endif
 
 #ifdef Robot_3
-
+	  return Speed;
 #endif
 
 
@@ -146,7 +146,7 @@ float Encoder_GetRWheelSpeed(void)
     Speed *= (float)0.2199; //圈转速 * 每圈转的距离 = 米每秒
 
 #ifdef Robot_1
-    return - Speed;
+    return Speed;
 #endif
 
 #ifdef Robot_2
@@ -154,7 +154,7 @@ float Encoder_GetRWheelSpeed(void)
 #endif
 
 #ifdef Robot_3
-
+		return -Speed;
 #endif
 
 }

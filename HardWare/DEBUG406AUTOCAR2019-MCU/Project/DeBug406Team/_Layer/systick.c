@@ -10,10 +10,9 @@
 /* Private variables ---------------------------------------------------------*/
 static volatile uint32_t _timingDelay;
 static volatile uint32_t _GoLineTime;
-static volatile uint32_t _CTime=10;
+static volatile uint32_t _CTime = 10;
 /* Public variables ---------------------------------------------------------*/
 uint8_t _UpdateTick = 0;
-
 
 /* Private function prototypes -----------------------------------------------*/
 /*static*/ inline void _DelayOneMs_Interrupt(void);
@@ -27,9 +26,9 @@ void _StateMachineTick_Interrupt(void);
   */
 void SysTick_Init(void)
 {
-    /* SystemCoreClock = 1s -> 1s / 1000 = 1ms */
-    SysTick_Config(SystemCoreClock / 1000);
-    NVIC_SetPriority(SysTick_IRQn, 0x0);
+  /* SystemCoreClock = 1s -> 1s / 1000 = 1ms */
+  SysTick_Config(SystemCoreClock / 1000);
+  NVIC_SetPriority(SysTick_IRQn, 0x0);
 }
 
 /**
@@ -39,9 +38,10 @@ void SysTick_Init(void)
   */
 void SysTickDelay(uint32_t nTime)
 {
-    _timingDelay = nTime;
+  _timingDelay = nTime;
 
-    while(_timingDelay != 0);
+  while (_timingDelay != 0)
+    ;
 }
 
 /**
@@ -51,43 +51,42 @@ void SysTickDelay(uint32_t nTime)
   */
 void _DelayOneMs_Interrupt(void)
 {
-    if (_timingDelay != 0)
+  if (_timingDelay != 0)
     {
-        _timingDelay--;
+      _timingDelay--;
     }
 }
 
-
 void _StateMachineTick_Interrupt(void)
 {
-    static uint16_t counter = 0;
+  static uint16_t counter = 0;
+  Crycle++;
+  counter++;
 
-    counter ++;
-
-    if(counter > (State_MachineTickTime - 1))
+  if (counter > (State_MachineTickTime - 1))
     {
-        counter = 0;
-        _UpdateTick = 1;
+      counter = 0;
+      _UpdateTick = 1;
     }
 }
 void _GoLineDelay_Interrupt(void)
 {
-    if(_GoLineTime!=0)
+  if (_GoLineTime != 0)
     {
-        _GoLineTime--;
+      _GoLineTime--;
     }
 }
 void _GoLineDelay(uint16_t MsTime)
 {
-    _GoLineTime=MsTime;
-    while(_GoLineTime!= 0)
+  _GoLineTime = MsTime;
+  while (_GoLineTime != 0)
     {
-        _GoLineMSpeed();
-        //_FindPointGo();
+      _GoLineMSpeed();
+      //_FindPointGo();
     };
-    if(_GoLineTime==0)
+  if (_GoLineTime == 0)
     {
-        //UpdateMotorState(MOTOR_STOP);
+      //UpdateMotorState(MOTOR_STOP);
     }
 }
 
@@ -110,29 +109,27 @@ void _GoLineDelay(uint16_t MsTime)
 */
 void _UpdateEncoderFeedback(void)
 {
-    static uint8_t counter = 0;
+  static uint8_t counter = 0;
 
-    if(counter < 99)
+  if (counter < 99)
     {
-        counter ++;
+      counter++;
     }
-    else
+  else
     {
-        _LeftEncoderFeedback  = TIM2->CNT;
-        _RightEncoderFeedback = TIM5->CNT;
+      _LeftEncoderFeedback = TIM2->CNT;
+      _RightEncoderFeedback = TIM5->CNT;
 
-        //距离统计
-        if(_Encoder_CountControl == 1)
+      //距离统计
+      if (_Encoder_CountControl == 1)
         {
-            _Encoder_DistantCount +=  ((Encoder_GetLWheelSpeed()+Encoder_GetRWheelSpeed())/(float)2.0)*(float)0.1;
+          _Encoder_DistantCount += ((Encoder_GetLWheelSpeed() + Encoder_GetRWheelSpeed()) / (float)2.0) * (float)0.1;
         }
 
-        TIM2->CNT = 0;
-        TIM5->CNT = 0;
-        counter = 0;
+      TIM2->CNT = 0;
+      TIM5->CNT = 0;
+      counter = 0;
     }
-
-
 }
 
 /*
@@ -149,77 +146,134 @@ void _UpdateEncoderFeedback(void)
 */
 void _Laser_AntiJitterFeedback(void)
 {
-    //采用int类型确保即使出问题也有恢复的可能
-    static int8_t LeftCountTimes = 0;
-	static int8_t RightCountTimes = 0;
+  //采用int类型确保即使出问题也有恢复的可能
+  static int8_t LeftCountTimes = 0;
+  static int8_t RightCountTimes = 0;
 
-    //如果读到左边低电平(在线上)
-    if(GPIO_ReadInputDataBit(GPIOG,GPIO_Pin_13) == 0)
+  //如果读到左边低电平(在线上)
+  if (GPIO_ReadInputDataBit(GPIOG, GPIO_Pin_13) == 0)
     {
-        //小于10就增加一次在线上的计数 否则不增加该值
-        if(LeftCountTimes < 10)
+      //小于10就增加一次在线上的计数 否则不增加该值
+      if (LeftCountTimes < 10)
         {
-            LeftCountTimes ++;
+          LeftCountTimes++;
         }
     }
-    else //不是低就是高 左边读到高电平(在毯子上)
+  else //不是低就是高 左边读到高电平(在毯子上)
     {
-        if(LeftCountTimes > 0)
+      if (LeftCountTimes > 0)
         {
-            //大于0就增加一次不在线上(或者降低在线上)的计数 不大于0就不减少
-            LeftCountTimes --;
-        }
-    }
-
-
-    //如果读到右边低电平(在线上)
-    if(GPIO_ReadInputDataBit(GPIOG,GPIO_Pin_11) == 0)
-    {
-        //小于10就增加一次在线上的计数 否则不增加该值
-        if(RightCountTimes < 10)
-        {
-            RightCountTimes ++;
-        }
-    }
-    else //不是低就是高 右边读到高电平(在毯子上)
-    {
-        if(RightCountTimes > 0)
-        {
-            //大于0就增加一次不在线上(或者降低在线上)的计数 不大于0就不减少
-            RightCountTimes --;
+          //大于0就增加一次不在线上(或者降低在线上)的计数 不大于0就不减少
+          LeftCountTimes--;
         }
     }
 
-    /* 完成采样 开始分析究竟反馈在线上还是不在线上 */
-
-    //左边
-    //统计到 > 4次在线上(也就是5次) 认为的却在线上
-    if(LeftCountTimes > 4)
+  //如果读到右边低电平(在线上)
+  if (GPIO_ReadInputDataBit(GPIOG, GPIO_Pin_11) == 0)
     {
-        //在线上LED亮 LOW
-        _LLaserAntiJitterState = LOW;
+      //小于10就增加一次在线上的计数 否则不增加该值
+      if (RightCountTimes < 10)
+        {
+          RightCountTimes++;
+        }
     }
-    else
+  else //不是低就是高 右边读到高电平(在毯子上)
     {
-        //不在线上 HIGH
-        _LLaserAntiJitterState = HIGH;
-    }
-
-
-    //右边
-    //统计到 > 4次在线上(也就是5次) 认为的却在线上
-    if(RightCountTimes > 4)
-    {
-        //在线上LED亮 LOW
-        _RLaserAntiJitterState = LOW;
-    }
-    else
-    {
-        //不在线上LED灭 HIGH
-        _RLaserAntiJitterState = HIGH;
+      if (RightCountTimes > 0)
+        {
+          //大于0就增加一次不在线上(或者降低在线上)的计数 不大于0就不减少
+          RightCountTimes--;
+        }
     }
 
+  /* 完成采样 开始分析究竟反馈在线上还是不在线上 */
 
+  //左边
+  //统计到 > 4次在线上(也就是5次) 认为的却在线上
+  if (LeftCountTimes > 4)
+    {
+      //在线上LED亮 LOW
+      _LLaserAntiJitterState = LOW;
+    }
+  else
+    {
+      //不在线上 HIGH
+      _LLaserAntiJitterState = HIGH;
+    }
+
+  //右边
+  //统计到 > 4次在线上(也就是5次) 认为的却在线上
+  if (RightCountTimes > 4)
+    {
+      //在线上LED亮 LOW
+      _RLaserAntiJitterState = LOW;
+    }
+  else
+    {
+      //不在线上LED灭 HIGH
+      _RLaserAntiJitterState = HIGH;
+    }
+}
+
+/* 测试函数 5.16 */
+extern volatile uint8_t _Is_PID_DownBridge_Activated;
+void _DownBridgeCtrl(void)
+{
+  float Speed = 0;
+  static uint8_t StopFlag = 0;
+  static uint8_t Counter = 0;
+
+  if(_Is_PID_DownBridge_Activated == DISABLE)
+    {
+      Counter = 0;
+      return;
+    }
+
+  Counter ++;
+  if(Counter > 254)
+    Counter = 0;
+
+  if(Counter > 100)
+    {
+      Speed = Encoder_GetLWheelSpeed() + Encoder_GetRWheelSpeed();
+      Speed /= 2;
+
+#ifdef Robot_1
+      if(Speed > (float)0.2)
+#endif
+
+#ifdef Robot_2
+        if(Speed > (float)0.2)
+#endif
+          {
+            StopFlag = 1;
+          }
+        else
+          {
+            StopFlag = 0;
+          }
+
+      Counter = 0;
+    }
+
+
+  if(_Is_PID_DownBridge_Activated == 1)
+    {
+#ifdef Robot_1
+      if((StopFlag == 1) && ((Counter % 10) == 0))
+#endif
+#ifdef Robot_2
+        if((StopFlag == 1) && ((Counter % 10) == 0))
+#endif
+          {
+            UpdateMotorState(MOTOR_STOP);
+          }
+        else
+          {
+            UpdateMotorState(MOTOR_FRONT);
+          }
+
+    }
 
 }
 

@@ -70,3 +70,4 @@ stm32f40_41xxx\motor_turn.o: ..\MDK-ARM\UpHillOrDownHill.h
 stm32f40_41xxx\motor_turn.o: ..\_Layer\supersonic.h
 stm32f40_41xxx\motor_turn.o: D:\SoftWare\Keil MDK-ARM\ARM\ARMCC\Bin\..\include\stdlib.h
 stm32f40_41xxx\motor_turn.o: ..\Shell_H\SHELL.h
+stm32f40_41xxx\motor_turn.o: ..\_Logic\line.h

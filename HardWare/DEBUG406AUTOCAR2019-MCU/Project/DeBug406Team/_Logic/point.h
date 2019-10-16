@@ -16,12 +16,19 @@
 	* hunting and how the related algorithms work.
   ******************************************************************************
   */
-	#ifdef DEBUGROB_LOGIC_H
+	#ifndef DEBUGROB_POINT_H
+	#define DEBUGROB_POINT_H
 	void _FindPointGo(void);
 	void _FindPointStop(void);
 	void _ArrivePlatform(void);
+	
+	void _ArrivePlatformBackUp_Gray(void);
+	void _ArrivePlatformBackUp_Delay(void);
+	void _ArrivePlatformBackUp_Encoder(void);
+	
 	uint32_t _CalculationADC(void);
 	uint32_t _UpdateButtomValue(void);
 	uint32_t _FindMax(uint32_t L[]);
 	extern int PointFlag;
+	
 	#endif

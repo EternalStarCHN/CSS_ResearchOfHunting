@@ -26,6 +26,8 @@ void SuperSonic_Init(void)
     RCC_APB2PeriphClockCmd(RCC_APB2Periph_TIM9,ENABLE);
     //GPIOB
     RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB,ENABLE);
+		//GPIOD
+		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD,ENABLE);
     //SYSCFG
     RCC_APB2PeriphClockCmd(RCC_APB2Periph_SYSCFG,ENABLE);
 
@@ -35,20 +37,47 @@ void SuperSonic_Init(void)
     //PB4 配置为开漏输出上拉模式
     GPIO_SUPERSONIC_Init.GPIO_Mode  = GPIO_Mode_OUT;
     GPIO_SUPERSONIC_Init.GPIO_OType = GPIO_OType_OD;
+		#ifdef Robot_2
     GPIO_SUPERSONIC_Init.GPIO_Pin   = GPIO_Pin_4;
+		#endif
+		#ifdef Robot_1
+		GPIO_SUPERSONIC_Init.GPIO_Pin   = GPIO_Pin_0;
+		#endif
     GPIO_SUPERSONIC_Init.GPIO_PuPd  = GPIO_PuPd_UP;
     GPIO_SUPERSONIC_Init.GPIO_Speed = GPIO_Speed_2MHz;
 
+		
+		#ifdef Robot_2
     GPIO_Init(GPIOB,&GPIO_SUPERSONIC_Init);
-
+		#endif
+		
+		#ifdef Robot_1
+		GPIO_Init(GPIOD,&GPIO_SUPERSONIC_Init);
+		#endif
+		
     GPIO_SUPERSONIC_Init.GPIO_Mode  = GPIO_Mode_IN;
     GPIO_SUPERSONIC_Init.GPIO_PuPd  = GPIO_PuPd_NOPULL;
+		
+		#ifdef Robot_2
     GPIO_SUPERSONIC_Init.GPIO_Pin   = GPIO_Pin_5 | GPIO_Pin_6 | GPIO_Pin_7;
-
-    GPIO_Init(GPIOB,&GPIO_SUPERSONIC_Init);
+		GPIO_Init(GPIOB,&GPIO_SUPERSONIC_Init);
+		#endif
+		
+		#ifdef Robot_1
+    GPIO_SUPERSONIC_Init.GPIO_Pin   = GPIO_Pin_1 | GPIO_Pin_2 | GPIO_Pin_3;
+		GPIO_Init(GPIOD,&GPIO_SUPERSONIC_Init);		
+		#endif
+		
+		
 
     //TRIG脚刚开始必须是低电平
+		#ifdef Robot_2
     GPIO_ResetBits(GPIOB,GPIO_Pin_4);
+		#endif 
+		
+		#ifdef Robot_1
+    GPIO_ResetBits(GPIOD,GPIO_Pin_0);		
+		#endif
     //刚开始可能会触发一次超声波 因此等一下消抖
     SysTickDelay(100);
 
@@ -81,16 +110,32 @@ float SuperSonic_GetDistant(void)
 {
     float Distant = 0;
 
-    //TRIG 20us高电平
+    //TRIG 20us高电平 PB4 TRIG
+		#ifdef Robot_2
     GPIO_SetBits(GPIOB,GPIO_Pin_4);
     TIM_Cmd(TIM9,ENABLE);
     while(TIM_GetCounter(TIM9) < 20);
     GPIO_ResetBits(GPIOB,GPIO_Pin_4);
+		#endif
+		
+		#ifdef Robot_1
+    GPIO_SetBits(GPIOD,GPIO_Pin_0);
+    TIM_Cmd(TIM9,ENABLE);
+    while(TIM_GetCounter(TIM9) < 20);
+    GPIO_ResetBits(GPIOD,GPIO_Pin_0);		
+		#endif
+		
     TIM9->CNT = 0;
 
-    //等待HCSR04 ECHO信号或者超时
+    //等待HCSR04 ECHO信号或者超时 PB6
+		#ifdef Robot_2
     while((GPIO_ReadInputDataBit(GPIOB,GPIO_Pin_6) == 0) && (TIM_GetCounter(TIM9) < 60000));
-
+		#endif
+		
+		#ifdef Robot_1
+		while((GPIO_ReadInputDataBit(GPIOD,GPIO_Pin_2) == 0) && (TIM_GetCounter(TIM9) < 60000));
+		#endif
+	
     //超时返回错误 距离9999米
     if(TIM_GetCounter(TIM9) >= 60000)
     {
@@ -103,8 +148,14 @@ float SuperSonic_GetDistant(void)
 
     TIM9->CNT = 0;
 
+		#ifdef Robot_2
     while((GPIO_ReadInputDataBit(GPIOB,GPIO_Pin_6) == 1) && (TIM_GetCounter(TIM9) < 60000));
-
+		#endif
+		
+		#ifdef Robot_1
+    while((GPIO_ReadInputDataBit(GPIOD,GPIO_Pin_2) == 1) && (TIM_GetCounter(TIM9) < 60000));		
+		#endif
+			
     //超时返回错误 距离9999米
     if(TIM_GetCounter(TIM9) >= 60000)
     {

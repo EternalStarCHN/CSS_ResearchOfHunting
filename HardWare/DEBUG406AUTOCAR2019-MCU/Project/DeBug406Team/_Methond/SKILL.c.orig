@@ -1833,35 +1833,42 @@ void OneTOTwo(void)
         }
         else
         {
-            if (FlagUp == 0)
+            if(_UpHillOrDownHillFeedBack()==DOWN)
             {
-                _GoLine();
-                _FindPointGo();
-                if (_UpHillOrDownHillFeedBack() == UP)
-                {
-                    UpdateMotorState(MOTOR_STOP);
-                    BeginCount();
-                    SysTickDelay(500);
-                    _InitNowYawAngle();
-                    FlagUp = 1;
-                    UpdateMotorState(MOTOR_FRONT);
-                }
+                _GoLineLowSpeed();
             }
-            else if (FlagUp == 1)
+            else
             {
-
-                while (Encoder_GetCurrentDistantCount() <= (float)5)
+                if (FlagUp == 0)
                 {
-                    _GoBridge();
-                    if (_UpHillOrDownHillFeedBack() == DOWN)
+                    _GoLine();
+                    _FindPointGo();
+                    if (_UpHillOrDownHillFeedBack() == UP)
                     {
-                        break;
+                        UpdateMotorState(MOTOR_STOP);
+                        BeginCount();
+                        SysTickDelay(500);
+                        _InitNowYawAngle();
+                        FlagUp = 1;
+                        UpdateMotorState(MOTOR_FRONT);
                     }
                 }
-                UpdateMotorState(MOTOR_FRONT);
-                FlagBridge = 0;
-                _FlagBack = 1;
-                FlagUp = 0;
+                else if (FlagUp == 1)
+                {
+
+                    while (Encoder_GetCurrentDistantCount() <= (float)5)
+                    {
+                        _GoBridge();
+                        if (_UpHillOrDownHillFeedBack() == DOWN)
+                        {
+                            break;
+                        }
+                    }
+                    UpdateMotorState(MOTOR_FRONT);
+                    FlagBridge = 0;
+                    _FlagBack = 1;
+                    FlagUp = 0;
+                }
             }
         }
     }
@@ -1892,7 +1899,7 @@ void TwoTOThree(void)
     {
         UpdateMotorState(MOTOR_FRONT);
         FlagStop++;
-        SetMotorDutyRatio(0.04, 0.04);
+        SetMotorDutyRatio(0.1, 0.1);
         SysTickDelay(500);
         //FlagStop++;
     }
@@ -1914,15 +1921,17 @@ void TwoTOThree(void)
             {
 
                 UpdateMotorState(MOTOR_FRONT);
-                SetMotorDutyRatio(0.05, 0.05);
+                SetMotorDutyRatio(0.14, 0.14);
                 ClearLLaserChangePendingBit();
                 while (UpgradeMotorState() == MOTOR_FRONT)
                 {
                     if (IsLLaserChange() == Changed)
                     {
                         UpdateMotorState(MOTOR_BACK);
-                        SysTickDelay(200);
-                        Motor_TurnRightBlockingMode(140);
+                        SysTickDelay(250);
+                        UpdateMotorState(MOTOR_STOP);
+                        Motor_TurnRightBlockingMode(148);
+                        FlagBalance=0;
                         FlagDown = 0;
                     }
                 }
@@ -1930,7 +1939,7 @@ void TwoTOThree(void)
         }
         else
         {
-            _GoLineDelay(3700);
+            _GoLineDelay(3500);
             UpdateMotorState(MOTOR_FRONT);
             ClearLLaserChangePendingBit();
             FlagDown = 1;
@@ -1938,8 +1947,13 @@ void TwoTOThree(void)
     }
     else if (FlagStop == 2)
     {
+        if(FlagBalance==0)
+        {
+            _GoLineDelay(1500);
+            FlagBalance=1;
+        }
         _GoLine();
-        //_FindPointGo();
+        _FindPointGo(); //刚才好像删了，但是现在不知道是不是他的原因
         if (_UpHillOrDownHillFeedBack() == UP)
         {
             FlagUp = 1;
@@ -1967,7 +1981,7 @@ void TwoTOThree(void)
         {
             if (_UpHillOrDownHillFeedBack() == FlatGround)
             {
-                _GoLine();
+                _GoLineMSpeed();
                 _FindPointStop();
                 if (UpgradeMotorState() == MOTOR_STOP)
                 {
@@ -2013,14 +2027,15 @@ void TwoTOFour()
             {
 
                 UpdateMotorState(MOTOR_FRONT);
-                SetMotorDutyRatio(0.05, 0.05);
+                SetMotorDutyRatio(0.15, 0.15);
                 ClearLLaserChangePendingBit();
                 while (UpgradeMotorState() == MOTOR_FRONT)
                 {
                     if (IsLLaserChange() == Changed)
                     {
                         UpdateMotorState(MOTOR_BACK);
-                        SysTickDelay(200);
+                        SysTickDelay(300);
+                        UpdateMotorState(MOTOR_STOP);
                         Motor_TurnLeftBlockingMode(33);
                         FlagDown = 0;
                     }
@@ -2037,8 +2052,13 @@ void TwoTOFour()
     }
     else if (FlagStop == 2)
     {
+        if(FlagBalance==0)
+        {
+            _GoLineDelay(1500);
+            FlagBalance=1;
+        }
         _GoLine();
-        //_FindPointGo();
+        _FindPointGo();
         if (_UpHillOrDownHillFeedBack() == UP)
         {
             FlagUp = 1;
@@ -2068,7 +2088,7 @@ void TwoTOFour()
         {
             if (_UpHillOrDownHillFeedBack() == FlatGround)
             {
-                _GoLine();
+                _GoLineMSpeed();
                 _FindPointStop();
                 if (UpgradeMotorState() == MOTOR_STOP)
                 {
@@ -2137,7 +2157,7 @@ void FourTOFive(void)
                     if (FlagPoint == 1)
                     {
                         UpdateMotorState(MOTOR_FRONT);
-                        SetMotorDutyRatio(0.05, 0.05);
+                        SetMotorDutyRatio(0.14, 0.14);
                         ClearLLaserChangePendingBit();
                         while (UpgradeMotorState() == MOTOR_FRONT)
                         {
@@ -2145,9 +2165,9 @@ void FourTOFive(void)
                             if (IsLLaserChange() == Changed)
                             {
                                 UpdateMotorState(MOTOR_BACK);
-                                SysTickDelay(100);
+                                SysTickDelay(300);
                                 UpdateMotorState(MOTOR_STOP);
-                                Motor_TurnLeftBlockingMode(90);
+                                Motor_TurnLeftBlockingMode(99);
                                 FlagDown = 0;
                             }
                         }
@@ -2181,13 +2201,16 @@ void FourTOFive(void)
                 ClearLLaserChangePendingBit();
                 ClearRLaserChangePendingBit();
                 UpdateMotorState(MOTOR_FRONT);
-                SetMotorDutyRatio(0.04, 0.04);
+                SetMotorDutyRatio(0.14, 0.14);
                 ClearLLaserChangePendingBit();
                 while (UpgradeMotorState() == MOTOR_FRONT)
                 {
                     if (IsLLaserChange() == Changed)
                     {
+                        UpdateMotorState(MOTOR_BACK);
+                        SysTickDelay(250);
                         UpdateMotorState(MOTOR_STOP);
+
                         Motor_TurnLeftBlockingMode(90);
                         FlagDown = 0;
                     }
@@ -2256,7 +2279,7 @@ void ThreeTOFive(void)
             }
             else if (FlagDown == 1)
             {
-                _GoLine();
+                // _GoLine();
                 if (TurnFlag == 0)
                 {
                     _GoLine();
@@ -2288,26 +2311,55 @@ void ThreeTOFive(void)
         }
         else if (FlagStop == 1)
         {
-            while(Encoder_GetCurrentDistantCount()<=(float)3)
+            if (FlagDistant == 0)
             {
-                _GoLine();
-            }
-            StopCount();
-            _FindPointStop();
-            if(UpgradeMotorState() == MOTOR_STOP)
-            {
-                UpdateMotorState(MOTOR_FRONT);
-                SetMotorDutyRatio(0.1, 0.1);
-                if(GetRLaserStateAntiJitter()==LOW)
+
+                if (Encoder_GetCurrentDistantCount() <= (float)3)
                 {
-                    UpdateMotorState(MOTOR_BACK);
-                    SetMotorDutyRatio(0.1, 0.1);
-                    SysTickDelay(200);
-                    UpdateMotorState(MOTOR_STOP);
-                    Motor_TurnLeftBlockingMode(45);
-                    BeginCount();
+                    _GoLine();
+                }
+                else
+                {
+                    _GoLine();
+                    _FindPointStop();
+                    if (UpgradeMotorState() == MOTOR_STOP)
+                    {
+                        //printf("1");
+                        UpdateMotorState(MOTOR_FRONT);
+                        FlagDistant = 1;
+                        StopCount();
+                    }
                 }
             }
+            else
+            {
+                UpdateMotorState(MOTOR_FRONT);
+                SysTickDelay(150);
+                UpdateMotorState(MOTOR_STOP);
+                Motor_TurnLeftBlockingMode(45);
+                BeginCount();
+            }
+//          while(Encoder_GetCurrentDistantCount()<=(float)3)
+//            {
+//              _GoLine();
+//            }
+//          StopCount();
+//					_GoLine();
+//          _FindPointStop();
+//          if(UpgradeMotorState() == MOTOR_STOP)
+//            {
+//              UpdateMotorState(MOTOR_FRONT);
+//              SetMotorDutyRatio(0.1, 0.1);
+//              if(GetRLaserStateAntiJitter()==LOW)
+//                {
+//                  UpdateMotorState(MOTOR_BACK);
+//                  SetMotorDutyRatio(0.1, 0.1);
+//                  SysTickDelay(200);
+//                  UpdateMotorState(MOTOR_STOP);
+//                  Motor_TurnLeftBlockingMode(45);
+//                  BeginCount();
+//                }
+//            }
         }
         else if (FlagStop == 2)
         {
@@ -2420,7 +2472,7 @@ void FiveTOSeven(void)
                 if (FlagUp == 1)
 
                 {
-                    SetMotorDutyRatio(0.23, 0.23);
+                    SetMotorDutyRatio(0.18, 0.18);
                     UpdateMotorState(MOTOR_FRONT);
                     SysTickDelay(245);
                     UpdateMotorState(MOTOR_STOP);
@@ -2547,8 +2599,8 @@ void ThreeTOSix()
                         }
                         //因为车辆有惯性，在激光找到线后需要向后做微调，保证车的几何中心与线的交叉点近乎重合
                         UpdateMotorState(MOTOR_BACK);
-                        SetMotorDutyRatio(0.1, 0.1);
-                        SysTickDelay(100);
+                        SetMotorDutyRatio(0.18, 0.18);
+                        SysTickDelay(200);
                         UpdateMotorState(MOTOR_STOP);
                         //找到后立刻停车，并转弯，并且将motor_stop状态传达至下一轮询
                         Motor_TurnRightBlockingMode(85);
@@ -2607,7 +2659,7 @@ void ThreeTOSix()
                 UpdateMotorState(MOTOR_STOP);
                 UpdateMotorState(MOTOR_BACK);
                 SetMotorDutyRatio(0.1, 0.1);
-                SysTickDelay(150);
+                SysTickDelay(250);
                 UpdateMotorState(MOTOR_STOP);
                 Motor_TurnRightBlockingMode(90);
             }
@@ -2630,6 +2682,8 @@ void ThreeTOSix()
             //当右侧激光传感器被触发时，右转145°
             UpdateMotorState(MOTOR_STOP);
             Motor_TurnRightBlockingMode(135);
+            BeginCount();
+            FlagDistant=1;
         }
         else
         {
@@ -2639,6 +2693,15 @@ void ThreeTOSix()
     //第三点停到第四点停时
     else if (FlagStop == 3)
     {
+        if(FlagDistant==0)
+        {
+            while(Encoder_GetCurrentDistantCount()<=(float)1.25)
+            {
+                _GoCricle();
+
+            }
+            FlagDistant=1;
+        }
         //当未检测上坡时，低速寻线
         if (FlagUp == 0)
         {
@@ -2647,7 +2710,7 @@ void ThreeTOSix()
             if (_UpHillOrDownHillFeedBack() == UP)
             {
                 FlagUp = 1;
-                Motor_TurnLeftBlockingMode(20);
+                Motor_TurnLeftBlockingMode(15);
                 UpdateMotorState(MOTOR_FRONT);
             }
         }
@@ -2706,6 +2769,9 @@ void ThreeTOSix()
             //如果flagbalance为1则左转90°，并且将flagup为0，将电机停带入下一轮询
             else
             {
+                UpdateMotorState(MOTOR_BACK);
+                SetMotorDutyRatio(0.14,0.14);
+                SysTickDelay(200);
                 UpdateMotorState(MOTOR_STOP);
                 Motor_TurnLeftBlockingMode(90);
                 FlagUp = 0;
@@ -2718,7 +2784,7 @@ void ThreeTOSix()
         //当未检测到上坡时，执行寻线，检测到后将flagup置为1
         if (FlagUp == 0)
         {
-            _GoLine();
+            _GoLineMSpeed();
             if (_UpHillOrDownHillFeedBack() == UP)
             {
                 FlagUp = 1;
@@ -2784,7 +2850,7 @@ void FourTOSix()
                     _GoLine();
                 }
                 UpdateMotorState(MOTOR_STOP);
-                Motor_TurnLeftBlockingMode(45);
+                Motor_TurnRightBlockingMode(45);
                 BeginCount();
             }
         }
@@ -2813,110 +2879,103 @@ void FourTOSix()
         }
         else
         {
-            //          while(GetLLaserStateAntiJitter()==HIGH)
-            //            {
-            //							Encoder_ResetDistant();
-            //            }
-            //          UpdateMotorState(MOTOR_STOP);
-            //          Encoder_StartDistantCount();
-            //          UpdateMotorState(MOTOR_BACK);
-            //          SetMotorDutyRatio(0.1,0.1);
-            //					SysTickDelay(150);
-            //					if(GetLLaserStateAntiJitter()==HIGH)
-            //					{
-            //						FlagPoint=1;
-            //          }
-            //					if(FlagPoint==1)
-            //					{
-            //					if(GetLLaserStateAntiJitter()==LOW)
-            //            {
-            //
-            //              UpdateMotorState(MOTOR_STOP);
-            //              TempDistant=Encoder_GetCurrentDistantCount();
-            //              UpdateMotorState(MOTOR_FRONT);
-            //              SetMotorDutyRatio(0.1,0.1);
-            //							printf("%f\r\n",TempDistant);
-            //              StopCount();
-            //              BeginCount();
-            //            }
-            //          if(Encoder_GetCurrentDistantCount()<=(TempDistant/(float)2.0+(float)0.02)&&Encoder_GetCurrentDistantCount()>(TempDistant/(float)2.0-(float)0.02))
-            //            {
-            //              UpdateMotorState(MOTOR_STOP);
-            //              Motor_TurnRightBlockingMode(45);
-            //							StopCount();
-            //            }
-            //					}
             UpdateMotorState(MOTOR_FRONT);
             SysTickDelay(150);
             UpdateMotorState(MOTOR_STOP);
-            Motor_TurnRightBlockingMode(37);
+            Motor_TurnLeftBlockingMode(37);
             BeginCount();
         }
     }
     else if (FlagStop == 2)
     {
-        _GoLine();
-        if (Encoder_GetCurrentDistantCount() >= (float)1)
-        {
-            UpdateMotorState(MOTOR_STOP);
-            StopCount();
-        }
-        //			if(GetRLaserStateAntiJitter()==LOW)
-        //			{
-        //				UpdateMotorState(MOTOR_STOP);
-        //			}
-
+        _GoLineLowSpeed();
+        _FindPointStop();
+        //点模式造成电机停状态时，执行继续向前寻线
         if (UpgradeMotorState() == MOTOR_STOP)
         {
-            //_GoLineDelay(200);
-            SetMotorDutyRatio(0.18, 0.15);
             UpdateMotorState(MOTOR_FRONT);
-            SysTickDelay(150);
+
+            while (GetRLaserStateAntiJitter() != LOW)
+            {
+                _GoLine();
+            }
+            //当右侧激光传感器被触发时，右转145°
             UpdateMotorState(MOTOR_STOP);
-            Motor_TurnRightBlockingMode(145);
-            UpdateMotorState(MOTOR_FRONT);
-            SetMotorDutyRatio(0.1, 0.1);
-            SysTickDelay(200);
-            UpdateMotorState(MOTOR_STOP);
+            Motor_TurnRightBlockingMode(135);
+            //BeginCount();
         }
         else
         {
             UpdateMotorState(MOTOR_FRONT);
         }
+//      _GoLineLowSpeed();
+//      if (Encoder_GetCurrentDistantCount() >= (float)1)
+//        {
+//          UpdateMotorState(MOTOR_STOP);
+//          StopCount();
+//        }
+//      if (UpgradeMotorState() == MOTOR_STOP)
+//        {
+//          //_GoLineDelay(200);
+//          SetMotorDutyRatio(0.18, 0.15);
+//          UpdateMotorState(MOTOR_FRONT);
+//          SysTickDelay(150);
+//          UpdateMotorState(MOTOR_STOP);
+//          Motor_TurnRightBlockingMode(145);
+//          UpdateMotorState(MOTOR_FRONT);
+//          SetMotorDutyRatio(0.1, 0.1);
+//          SysTickDelay(200);
+//          UpdateMotorState(MOTOR_STOP);
+//        }
+//      else
+//        {
+//          UpdateMotorState(MOTOR_FRONT);
+//        }
     }
     else if (FlagStop == 3)
     {
+        if(FlagDistant==0)
+        {
+            while(Encoder_GetCurrentDistantCount()<=(float)1.25)
+            {
+                _GoCricle();
+
+            }
+            FlagDistant=1;
+        }
+        //当未检测上坡时，低速寻线
         if (FlagUp == 0)
         {
-            _GoLineLowSpeed();
+            _GoCricle();
+            //当检测到上坡时，左转26矫正，保证上跷跷板时两前轮均能不悬空，并将flag置为1
             if (_UpHillOrDownHillFeedBack() == UP)
             {
                 FlagUp = 1;
-                Motor_TurnLeftBlockingMode(20);
-                SysTickDelay(100);
+                Motor_TurnLeftBlockingMode(15);
                 UpdateMotorState(MOTOR_FRONT);
-                Encoder_ResetDistant();
-                Encoder_StartDistantCount();
             }
         }
+        //当flagup为1时，实行轮速锁定，保证速度不会过低
         else if (FlagUp == 1)
         {
             _BlockSpeed();
+            //一直保持转台直至回到平地。因为我们的陀螺仪因为防抖需要所以在有一部分还在跷跷板时就会认为在平地上，所以先需要向前行进一段距离做矫正
+            //左转40°因为圆的线方向与上桥时相比已经有了变化。还需要将flagup置为2
             if (_UpHillOrDownHillFeedBack() == FlatGround)
             {
                 FlagUp = 2;
                 Encoder_ResetDistant();
                 Encoder_StartDistantCount();
                 UpdateMotorState(MOTOR_FRONT);
-                SetMotorDutyRatio(0.17, 0.17);
-                SysTickDelay(250);
-                UpdateMotorState(MOTOR_BACK);
-                SetMotorDutyRatio(0.1, 0.1);
-                Motor_TurnLeftBlockingMode(45);
+                SetMotorDutyRatio(0.14, 0.14);
+                SysTickDelay(200);
+                Motor_TurnLeftBlockingMode(40);
                 SysTickDelay(100);
                 UpdateMotorState(MOTOR_FRONT);
             }
         }
+
+        //当flagup为2时执行低速寻线0.5，这里的执行距离是防止刚下跷跷板后的车处于非稳定状态误判入点
         else if (FlagUp == 2)
         {
             if (FlagBalance == 0)
@@ -2926,12 +2985,14 @@ void FourTOSix()
                 if (Encoder_GetCurrentDistantCount() >= (float)0.5)
                 {
                     //printf("1\r\n");
+                    //此处的入点方式为临时入点，原因为此处边缘仅为1，与点模式的通用描述不同
                     if (_Temp <= 20000)
                     {
                         UpdateMotorState(MOTOR_STOP);
                         ClearLLaserChangePendingBit();
                     }
                 }
+                //由临时点模式造成的电机停有时，继续前进，直至左侧激光管检测到线，并将flagbalance置为1
                 if (UpgradeMotorState() == MOTOR_STOP)
                 {
                     //printf("2\r\n");
@@ -2946,6 +3007,7 @@ void FourTOSix()
                     FlagBalance = 1;
                 }
             }
+            //如果flagbalance为1则左转90°，并且将flagup为0，将电机停带入下一轮询
             else
             {
                 UpdateMotorState(MOTOR_STOP);
@@ -2953,12 +3015,79 @@ void FourTOSix()
                 FlagUp = 0;
             }
         }
+//      if (FlagUp == 0)
+//        {
+//          _GoLineLowSpeed();
+//          if (_UpHillOrDownHillFeedBack() == UP)
+//            {
+//              FlagUp = 1;
+//              Motor_TurnLeftBlockingMode(20);
+//              SysTickDelay(100);
+//              UpdateMotorState(MOTOR_FRONT);
+//              Encoder_ResetDistant();
+//              Encoder_StartDistantCount();
+//            }
+//        }
+//      else if (FlagUp == 1)
+//        {
+//          _BlockSpeed();
+//          if (_UpHillOrDownHillFeedBack() == FlatGround)
+//            {
+//              FlagUp = 2;
+//              Encoder_ResetDistant();
+//              Encoder_StartDistantCount();
+//              UpdateMotorState(MOTOR_FRONT);
+//              SetMotorDutyRatio(0.17, 0.17);
+//              SysTickDelay(250);
+//              UpdateMotorState(MOTOR_BACK);
+//              SetMotorDutyRatio(0.1, 0.1);
+//              Motor_TurnLeftBlockingMode(45);
+//              SysTickDelay(100);
+//              UpdateMotorState(MOTOR_FRONT);
+//            }
+//        }
+//      else if (FlagUp == 2)
+//        {
+//          if (FlagBalance == 0)
+//            {
+//              //printf("%f\r\n",Encoder_GetCurrentDistantCount());
+//              _GoLineLowSpeed();
+//              if (Encoder_GetCurrentDistantCount() >= (float)0.5)
+//                {
+//                  //printf("1\r\n");
+//                  if (_Temp <= 20000)
+//                    {
+//                      UpdateMotorState(MOTOR_STOP);
+//                      ClearLLaserChangePendingBit();
+//                    }
+//                }
+//              if (UpgradeMotorState() == MOTOR_STOP)
+//                {
+//                  //printf("2\r\n");
+//                  Encoder_StopDistantCount();
+//                  Encoder_ResetDistant();
+//                  UpdateMotorState(MOTOR_FRONT);
+//                  while (IsLLaserChange() != Changed)
+//                    {
+//                      //printf("3\r\n");
+//                      _GoLineLowSpeed();
+//                    }
+//                  FlagBalance = 1;
+//                }
+//            }
+//          else
+//            {
+//              UpdateMotorState(MOTOR_STOP);
+//              Motor_TurnLeftBlockingMode(90);
+//              FlagUp = 0;
+//            }
+//        }
     }
     else if (FlagStop == 4)
     {
         if (FlagUp == 0)
         {
-            _GoLine();
+            _GoLineMSpeed();
             if (_UpHillOrDownHillFeedBack() == UP)
             {
                 FlagUp = 1;
@@ -3036,6 +3165,9 @@ void FiveTOEight(void)
                     if (GetLLaserStateAntiJitter() == LOW)
                     {
                         //printf("1");
+                        UpdateMotorState(MOTOR_BACK);
+                        SetMotorDutyRatio(0.1,0.1);
+                        SysTickDelay(200);
                         UpdateMotorState(MOTOR_STOP);
                         Motor_TurnLeftBlockingMode(90);
                         BeginCount();
@@ -3060,38 +3192,38 @@ void FiveTOEight(void)
             {
                 SetMotorDutyRatio(0.18, 0.18);
                 UpdateMotorState(MOTOR_FRONT);
-                SysTickDelay(245);
+                SysTickDelay(185);
                 UpdateMotorState(MOTOR_STOP);
                 Motor_TurnRightNoInFlatGround(75);
-
+                FlagBridge=0;
             }
         }
         else if (FlagStop == 2)
         {
-            if (FlagBridge == 0)
+//            if (FlagBridge == 0)
+//            {
+//                _GoLine();
+//                if (_UpHillOrDownHillFeedBack() == FlatGround)
+//                {
+//                    FlagBridge = 1;
+//                }
+//            }
+//            else
+//            {
+
+            _GoLine();
+            if (_UpHillOrDownHillFeedBack() == UP)
             {
-                _GoLine();
+                FlagUp = 1;
+            }
+            if (FlagUp == 1)
+            {
                 if (_UpHillOrDownHillFeedBack() == FlatGround)
                 {
-                    FlagBridge = 1;
+                    _ArrivePlatform();
                 }
             }
-            else
-            {
-
-                _GoLine();
-                if (_UpHillOrDownHillFeedBack() == UP)
-                {
-                    FlagUp = 1;
-                }
-                if (FlagUp == 1)
-                {
-                    if (_UpHillOrDownHillFeedBack() == FlatGround)
-                    {
-                        _ArrivePlatform();
-                    }
-                }
-            }
+            //}
         }
     }
     else
@@ -3141,8 +3273,12 @@ void SixTOSeven(void)
             }
             else
             {
-                _GoLine();
-                _FindPointStop();
+                _GoLineLowSpeed();
+                //_FindPointStop();
+                if(_Temp<=10000)
+                {
+                    UpdateMotorState(MOTOR_STOP);
+                }
                 if (UpgradeMotorState() == MOTOR_STOP)
                 {
                     //printf("1");
@@ -3169,25 +3305,24 @@ void SixTOSeven(void)
         {
             while (Encoder_GetCurrentDistantCount() <= (float)3.2)
             {
-                //            if(FlagPoint==2)
-                //            {
-                //                _GoLineDelay(100);
-                //                _FindPointGo();
-                //								FlagPoint=0;
-                //            }
-                //            else
-                //            {
-                //                _GoLineLowSpeed();
-                //                _FindPointGo();
-                //            }
-                //
-                //printf("1");
-                //_GoCricle();
-                _GoCricleSpeedLock();
+                _GoCricle();
+                if(FlagBalance==0)
+                {
+                    if(_UpHillOrDownHillFeedBack()==UP)
+                    {
+                        Crycle=0;
+                        while(Crycle<=400)
+                        {
+                            _GoCricleSpeedLock();
+                        }
+                    }
+                    FlagBalance=1;
+                }
             }
+            FlagBalance=0;
             StopCount();
             BeginCount();
-            while (Encoder_GetCurrentDistantCount() <= (float)1.5)
+            while (Encoder_GetCurrentDistantCount() <= (float)1.8)
             {
                 _GoLine();
                 if (FlagPoint == 0)
@@ -3218,12 +3353,17 @@ void SixTOSeven(void)
                 UpdateMotorState(MOTOR_STOP);
 
                 Motor_TurnRightBlockingMode(90);
+                BeginCount();
             }
         }
     }
     else if (FlagStop == 2)
     {
-        _GoLineMSpeed();
+        while(Encoder_GetCurrentDistantCount()<=(float)0.9)
+        {
+            _GoLineMSpeed();
+        }
+        StopCount();
         if (_UpHillOrDownHillFeedBack() == UP)
         {
             UpdateMotorState(MOTOR_STOP);
@@ -3235,9 +3375,10 @@ void SixTOSeven(void)
         {
             SetMotorDutyRatio(0.18, 0.18);
             UpdateMotorState(MOTOR_FRONT);
-            SysTickDelay(225);
+            SysTickDelay(245);
             UpdateMotorState(MOTOR_STOP);
-            Motor_TurnLeftNoInFlatGround(87);
+            Motor_TurnLeftNoInFlatGround(75);
+            BeginCount();
             FlagUp=0;
         }
     }
@@ -3246,7 +3387,7 @@ void SixTOSeven(void)
         if (FlagDistant == 0)
         {
 
-            while (Encoder_GetCurrentDistantCount() <= (float)2.7)
+            while (Encoder_GetCurrentDistantCount() <= (float)4)
             {
                 if(_UpHillOrDownHillFeedBack() == UP)
                 {
@@ -3286,8 +3427,6 @@ void SixTOEight(void)
     const AdcData_t *adcData;
     adcData = UpdateButtom();
     uint32_t _Temp = 0;
-    //  float _TempAngleLow=0;
-    //  float _TempAngleHigh=0;
     for (int i = 0; i <= 7; i++)
     {
         _Temp += adcData->array[0][i];
@@ -3321,8 +3460,11 @@ void SixTOEight(void)
             }
             else
             {
-                _GoLine();
-                _FindPointStop();
+                _GoLineLowSpeed();
+                if(_Temp<=10000)
+                {
+                    UpdateMotorState(MOTOR_STOP);
+                }
                 if (UpgradeMotorState() == MOTOR_STOP)
                 {
                     //printf("1");
@@ -3339,6 +3481,7 @@ void SixTOEight(void)
                     UpdateMotorState(MOTOR_STOP);
                     BeginCount();
                     FlagPoint = 0;
+                    FlagBalance=0;
                 }
             }
         }
@@ -3350,7 +3493,20 @@ void SixTOEight(void)
             while (Encoder_GetCurrentDistantCount() <= (float)3.2)
             {
                 _GoCricle();
+                if(FlagBalance==0)
+                {
+                    if(_UpHillOrDownHillFeedBack()==UP)
+                    {
+                        Crycle=0;
+                        while(Crycle<=400)
+                        {
+                            _GoCricleSpeedLock();
+                        }
+                    }
+                    FlagBalance=1;
+                }
             }
+            FlagBalance=0;
             StopCount();
             BeginCount();
             while (Encoder_GetCurrentDistantCount() <= (float)1.5)
@@ -3401,9 +3557,9 @@ void SixTOEight(void)
         {
             SetMotorDutyRatio(0.18, 0.18);
             UpdateMotorState(MOTOR_FRONT);
-            SysTickDelay(225);
+            SysTickDelay(265);
             UpdateMotorState(MOTOR_STOP);
-            Motor_TurnRightNoInFlatGround(87);
+            Motor_TurnRightNoInFlatGround(70);
         }
     }
     else if (FlagStop == 3)
@@ -3441,6 +3597,10 @@ void _Start(void)
 }
 void TestOnly(void)
 {
+#ifndef TESTBUTTOM
+    _GoLine();
+#endif
+#ifdef TESTDISTENCE
     BeginCount();
     while (Encoder_GetCurrentDistantCount() <= (float)4)
     {
@@ -3449,6 +3609,24 @@ void TestOnly(void)
     }
     UpdateMotorState(MOTOR_STOP);
     Stop = 1;
+#endif
+#ifdef TESTSPEED
+    printf("lspeed: %f     rspeed: %f\r\n",Encoder_GetLWheelSpeed(),Encoder_GetRWheelSpeed());
+#endif
+#ifdef TESTBUTTOM
+    const AdcData_t *adcData;
+    adcData = UpdateButtom();
+
+    for (int i = 0; i <= 7; i++)
+    {
+        printf("%5d , ",adcData->array[0][i]);
+    }
+    printf("\r\n");
+    SysTickDelay(500);
+#endif
+#ifdef TESTOTHER
+
+#endif
 }
 void ThreeTOFour(void)
 {
@@ -3573,7 +3751,7 @@ void EightTOSeven(void)
                     _GoLineMSpeed();
                 }
                 FlagDistant=1;
-								StopCount();
+                StopCount();
             }
             else
             {
@@ -3587,10 +3765,10 @@ void EightTOSeven(void)
                     if(_UpHillOrDownHillFeedBack()==FlatGround)
                     {
                         _ArrivePlatform();
-																						if(UpgradeMotorState()==MOTOR_STOP)
-											{
-												Stop=1;
-											}
+                        if(UpgradeMotorState()==MOTOR_STOP)
+                        {
+                            Stop=1;
+                        }
                     }
                 }
             }
@@ -3600,7 +3778,7 @@ void EightTOSeven(void)
 }
 void SevenTOEight(void)
 {
-	    if(_FlagBack==0)
+    if(_FlagBack==0)
     {
         _GoLineLowSpeedDownBridge();
         if(_UpHillOrDownHillFeedBack()==DOWN)
@@ -3631,7 +3809,7 @@ void SevenTOEight(void)
                     _GoLineMSpeed();
                 }
                 FlagDistant=1;
-								StopCount();
+                StopCount();
             }
             else
             {
@@ -3645,10 +3823,10 @@ void SevenTOEight(void)
                     if(_UpHillOrDownHillFeedBack()==FlatGround)
                     {
                         _ArrivePlatform();
-											if(UpgradeMotorState()==MOTOR_STOP)
-											{
-												Stop=1;
-											}
+                        if(UpgradeMotorState()==MOTOR_STOP)
+                        {
+                            Stop=1;
+                        }
                     }
                 }
             }
@@ -3663,4 +3841,14 @@ void _Reset(void)
     //InitFlag();
 }
 
+void UpHand(void)
+{
+    SetServoPWM(SERVO_ARM_LEFT,1400);
+    SysTickDelay(500);
+    SetServoPWM(SERVO_ARM_RIGHT,1400);
+    SysTickDelay(300);
+    SetServoPWM(SERVO_ARM_LEFT,2400);
+    SetServoPWM(SERVO_ARM_RIGHT,500);
+    Stop=1;
+}
 #endif

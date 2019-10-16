@@ -3343,7 +3343,7 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>USE_STDPERIPH_DRIVER,STM32F40_41xxx,Robot_2</Define>
+              <Define>USE_STDPERIPH_DRIVER,STM32F40_41xxx,Robot_2,Magic</Define>
               <Undefine></Undefine>
               <IncludePath>../;../../../Libraries/CMSIS/Device/ST/STM32F4xx/Include;../../../Libraries/STM32F4xx_StdPeriph_Driver/inc;../../../Utilities/STM32_EVAL/Common;../../../Utilities/STM32_EVAL/STM3240_41_G_EVAL;..\_Layer;..\_Logic;..\MDK-ARM;..\_Methond;..\Shell_H</IncludePath>
             </VariousControls>

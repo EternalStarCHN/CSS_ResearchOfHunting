@@ -17,8 +17,8 @@
 	* hunting and how the related algorithms work.
   ******************************************************************************
   */
-	#ifndef DEBUGROB_LOGIC_H
-	#define DEBUGROB_LOGIC_H
+	#ifndef DEBUGROB_LINE_H
+	#define DEBUGROB_LINE_H
 	/*Hunting with laser tube and gray sensor return values*/
 	/*
 		This algorithm looks for two eigenvalues of the function fitted by the array
@@ -39,15 +39,22 @@
 	void _GoBridge(void);
 	double _GetADCError(void);
 	double _GetGYROError(void);
+	double _GetADCErrorInBridge(void);
 	void _GoLine(void);
 	void _GoLineLowSpeed(void);
 	void _GoLineMSpeed(void);
 	void _GoLineLowSpeedDownBridge(void);
+	void _GoBridgeByButtom(void);
 	float _GetLSpeedError(void);
 	float _GetRSpeedError(void);
 	void _GoCricle(void);
 	void _GoCricleSpeedLock(void);
 	double _TrackingCoreAlgorithmInCricle(void);
 	void _BlockSpeed(void);
+	double _TrackingCoreAlgorithmInBridgeByButtom(void);
+	void _GoLineHighSpeed(void);
+	//测试函数
+	void _GoLineLowSpeedDownBridgeTest(void);
+	void _GoLine_UserAdjust(float LPWM,float RPWM);
 	
 	#endif

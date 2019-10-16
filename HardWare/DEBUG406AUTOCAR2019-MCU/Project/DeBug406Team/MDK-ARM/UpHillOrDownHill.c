@@ -1,4 +1,5 @@
 #include "UpHillOrDownHill.h"
+#include "magic.h"
 //#define NegativeNumber
 static UpHillOrDownHill _UpOrDown=FlatGround;
 static IsBalance _Isbalance=BALANCE;
@@ -16,6 +17,13 @@ IsBalance _IsBalanceFeedBack(void)
 	//printf("%d",_UpOrDown);
 	return _Isbalance;
 }
+
+
+#ifdef Use_Magic
+ #ifndef Robot_3
+	#define Magic
+#endif
+#endif
 
 void _UpHillOrDownHillCheck(void)
 {
@@ -35,12 +43,24 @@ void _UpHillOrDownHillCheck(void)
 		_UpOrDown=FlatGround;
 	}
 	#else
-		if((Gyro_GetPitchAngle()-PrimaryRollAngle>300)&&(Gyro_GetPitchAngle()-PrimaryRollAngle<357))
+	
+	//LV7yRKlQDzAIU4zi
+	//上坡临界判断角度 陀螺仪从中点往上仰头 角度从359逐渐减少 
+	#ifndef Magic
+		if((Gyro_GetPitchAngle()-PrimaryRollAngle>300)&&(Gyro_GetPitchAngle()-PrimaryRollAngle<358))
+	#else
+	if((Gyro_GetPitchAngle()-PrimaryRollAngle>UpHillOrDownHill_UpHill_Max_PitchAngle)&&(Gyro_GetPitchAngle()-PrimaryRollAngle<UpHillOrDownHill_UpHill_Min_PitchAngle))
+	#endif
 	{
 		_UpOrDown=UP;
 	}
 
+	//下坡临界判断角度 陀螺仪从中点往下探头 角度从0增加到360
+	#ifndef Magic
 	else if((Gyro_GetPitchAngle()-PrimaryRollAngle>6)&&(Gyro_GetPitchAngle()-PrimaryRollAngle<100))
+	#else
+	else if((Gyro_GetPitchAngle()-PrimaryRollAngle>6)&&(Gyro_GetPitchAngle()-PrimaryRollAngle<100))
+	#endif
 	{
 		_UpOrDown=DOWN;
 	}
@@ -48,13 +68,18 @@ void _UpHillOrDownHillCheck(void)
 	{
 		_UpOrDown=FlatGround;
 	}
-	if(Gyro_GetRollAngle()<342||Gyro_GetRollAngle()>355)
+	//roll角是否平衡
+	//#ifndef Magic
+	if(Gyro_GetRollAngle()>355||Gyro_GetRollAngle()<5)
+	//#else
+	//if(Gyro_GetRollAngle()<342||Gyro_GetRollAngle()>355)
+	//#endif
 	{
-		_Isbalance=UNBALANCE;
+		_Isbalance=BALANCE;
 	}
 	else
 	{
-		_Isbalance=BALANCE;
+		_Isbalance=UNBALANCE;
 	}
 	#endif
 }

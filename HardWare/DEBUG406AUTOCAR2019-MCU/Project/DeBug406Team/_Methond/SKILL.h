@@ -12,6 +12,7 @@
 #include "UpHillOrDownHill.h"
 #include "motor_turn.h"
 #include "magic.h"
+#include "math.h"
 void InitFlag(void);
 void ThreeTOFour(void);
 void OneTOTwo(void);
@@ -32,9 +33,13 @@ void SevenTOOne(void);
 void EightTOOne(void);
 void EightTOSeven(void);
 void SevenTOEight(void);
+void EightTOFive(void);
+void UpHand(void);
+void ShakeHead(void);
 
 void _Start(void);
 void _Reset(void);
+void _Rebot(void);
 
 extern int FlagUp;
 extern int FlagDown;
@@ -46,4 +51,5 @@ extern int FlagBalance;
 extern int FlagBridge;
 extern int FlagDistant;
 extern int Flagstart;   //此变量只有在回到1台后才可初始化。
+extern int Crycle;
 #endif

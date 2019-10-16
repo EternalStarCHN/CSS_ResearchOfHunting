@@ -42,6 +42,7 @@ void _GoLineDelay(uint16_t MsTime);
 
 void _Laser_AntiJitterFeedback(void);
 void _UpdateEncoderFeedback(void);
+void _DownBridgeCtrl(void);
 //
 /* Reference Only -> (F12) SysTick_Handler(); */
 /*static*/ inline void _DelayOneMs_Interrupt(void);

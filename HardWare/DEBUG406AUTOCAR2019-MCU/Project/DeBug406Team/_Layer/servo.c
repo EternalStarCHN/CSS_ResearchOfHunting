@@ -108,6 +108,8 @@ void ServoInit(void)
     TIM_ARRPreloadConfig(TIM4, ENABLE);
 
     TIM_Cmd(TIM4, ENABLE);
+	SetServoPWM(SERVO_ARM_LEFT,2400);
+  SetServoPWM(SERVO_ARM_RIGHT,500);
 }
 
 /**

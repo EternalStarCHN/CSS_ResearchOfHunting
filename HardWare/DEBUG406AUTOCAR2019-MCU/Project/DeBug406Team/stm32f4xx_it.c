@@ -167,6 +167,10 @@ void SysTick_Handler(void)
 
     //巡线一定时间，单位ms
     _GoLineDelay_Interrupt();
+		
+		//测试函数5.16
+		//下桥PID控制函数中断轮询
+		//_DownBridgeCtrl();
 
 #ifdef CPU_USAGE_TEST_Systick
     GPIO_ResetBits(GPIOD,GPIO_Pin_14);

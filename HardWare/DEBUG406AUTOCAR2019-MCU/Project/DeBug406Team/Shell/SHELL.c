@@ -4,6 +4,7 @@ int Stop=0;
 uint8_t Command;
 uint8_t motion;
 int i=0;
+int Crycle=0;
 extern volatile uint8_t _Command[5];
 void _Timer(void)
 {
@@ -25,7 +26,7 @@ void Match(void)
 		motion=_Command[0];
 		Start=0;
 		UpdateMotorState(MOTOR_FRONT);
-		SetMotorDutyRatio(0,0);
+		SetMotorDutyRatio(0.01,0);
 		Clear_CommandUpdate_PendingBit();
 		InitFlag();
 		Encoder_StopDistantCount();
@@ -46,15 +47,17 @@ void Match(void)
 			case 0x09 :FiveTOEight();break;
 			case 0x0A :SixTOSeven();break;
 			case 0x0B :SixTOEight();break;
-			case 0x0C :SevenTOOne();break;
-			case 0x0D :EightTOOne();break;
+			case 0x0C :SevenTOEight();break;
+			case 0x0D :EightTOSeven();break;
+			case 0x0E :SevenTOOne();break;
+			case 0x0F :EightTOOne();break;
 		}
 		switch(motion)
 		{
 			case 0x00 :break;
 			case 0x0F :TurnBack();break; 
-			case 0x0E :{printf("0xab");
-									Stop=1;								}break; 
+			case 0x0E :UpHand();break; 
+			case 0x0A :ShakeHead();break; //摇头；
 		}
 		
 	}

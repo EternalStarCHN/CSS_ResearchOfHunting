@@ -14,7 +14,9 @@ extern int Flagstart;
 /* Private functions ---------------------------------------------------------*/
 #ifndef _TEST_TAG_
 
-//#define MATCH
+extern volatile uint8_t _Is_PID_DownBridge_Activated;
+
+#define MATCH
 /**
   * @brief  Main program
   * @param  None
@@ -29,6 +31,7 @@ int main(void)
     STMMiniBoard_Init();
     SuperSonic_Init();
     Serial_Init();
+		ServoInit();
     MotorPWM_Init();
     Adc_Init();
     Gyro_Init();
@@ -46,8 +49,9 @@ int main(void)
     SetMotorDutyRatio(0.01, 0.01);
     //SetMotorDutyRatio(0.21,0.21);
     UpdateMotorState(MOTOR_FRONT);
-    SysTickDelay(2000);
+    SysTickDelay(1000);
     _Reset();
+		 SysTickDelay(51);
     /* Infinite loop *******************************************************/
 #ifdef MATCH
     while (Flagstart == 0)
@@ -64,9 +68,10 @@ int main(void)
             GPIO_SetBits(GPIOD, GPIO_Pin_14);
 #endif
 
-					  _Timer();
+            _Timer();
             Match();
-            _UpdateTick = 0;
+					
+					_UpdateTick = 0;
 #ifdef CPU_USAGE_TEST
             GPIO_ResetBits(GPIOD, GPIO_Pin_14);
 #endif

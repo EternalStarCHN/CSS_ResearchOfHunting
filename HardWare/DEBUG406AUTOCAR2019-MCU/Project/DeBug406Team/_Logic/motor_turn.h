@@ -34,4 +34,10 @@ void Motor_TurnRightNoInFlatGround(float Angle);
 void Motor_TurnLeftNoInFlatGround(float Angle);
 void Motor_TurnLeft180OnPlatform(void);
 
+void Motor_TurnLeftDelayBlockingMode(uint16_t ms, float LPWM, float RPWM);
+void Motor_TurnRightDelayBlockingMode(uint16_t ms, float LPWM, float RPWM);
+
+void Motor_TurnLeft180OnPlatform_UserAdjust(float LPWM,float RPWM,float AimAngle);
+void Motor_TurnGoMidByGray(void);
+
 #endif
