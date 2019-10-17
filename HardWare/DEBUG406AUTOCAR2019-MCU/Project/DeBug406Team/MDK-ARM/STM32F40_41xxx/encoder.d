@@ -1,13 +1,13 @@
 stm32f40_41xxx\encoder.o: ..\_Layer\encoder.c
 stm32f40_41xxx\encoder.o: ..\_Layer\encoder.h
-stm32f40_41xxx\encoder.o: D:\SoftWare\Keil MDK-ARM\ARM\ARMCC\Bin\..\include\stdint.h
-stm32f40_41xxx\encoder.o: D:\SoftWare\Keil MDK-ARM\ARM\ARMCC\Bin\..\include\stdio.h
+stm32f40_41xxx\encoder.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+stm32f40_41xxx\encoder.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 stm32f40_41xxx\encoder.o: ../../../Libraries/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h
-stm32f40_41xxx\encoder.o: D:\SoftWare\Keil MDK-ARM\PACK\ARM\CMSIS\5.5.1\CMSIS\Core\Include\core_cm4.h
-stm32f40_41xxx\encoder.o: D:\SoftWare\Keil MDK-ARM\PACK\ARM\CMSIS\5.5.1\CMSIS\Core\Include\cmsis_version.h
-stm32f40_41xxx\encoder.o: D:\SoftWare\Keil MDK-ARM\PACK\ARM\CMSIS\5.5.1\CMSIS\Core\Include\cmsis_compiler.h
-stm32f40_41xxx\encoder.o: D:\SoftWare\Keil MDK-ARM\PACK\ARM\CMSIS\5.5.1\CMSIS\Core\Include\cmsis_armcc.h
-stm32f40_41xxx\encoder.o: D:\SoftWare\Keil MDK-ARM\PACK\ARM\CMSIS\5.5.1\CMSIS\Core\Include\mpu_armv7.h
+stm32f40_41xxx\encoder.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\core_cm4.h
+stm32f40_41xxx\encoder.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\cmsis_version.h
+stm32f40_41xxx\encoder.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\cmsis_compiler.h
+stm32f40_41xxx\encoder.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\cmsis_armcc.h
+stm32f40_41xxx\encoder.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\mpu_armv7.h
 stm32f40_41xxx\encoder.o: ../../../Libraries/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h
 stm32f40_41xxx\encoder.o: ../stm32f4xx_conf.h
 stm32f40_41xxx\encoder.o: ../../../Libraries/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_adc.h

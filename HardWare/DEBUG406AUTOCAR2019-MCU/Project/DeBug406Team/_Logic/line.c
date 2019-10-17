@@ -156,6 +156,13 @@ double _TrackingCoreAlgorithmOpenMV(void)
   previous_error = error;
 	return PID_value;
 }
+
+/*OpenMV巡线实际执行函数   asfhadkaiafhalad*/
+void _OpenMVGoLine(void)
+{
+	 SetMotorDutyRatio(0.15 + _TrackingCoreAlgorithmOpenMV(), 0.09 - _TrackingCoreAlgorithmOpenMV());
+}
+
 /* 以中等速度巡线实际执行函数 ejke2AABCoexrDLj */
 void _GoLineMSpeed(void)
 {
