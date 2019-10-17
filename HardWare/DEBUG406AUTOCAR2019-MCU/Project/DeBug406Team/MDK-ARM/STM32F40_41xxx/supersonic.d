@@ -57,11 +57,13 @@ stm32f40_41xxx\supersonic.o: ..\_Layer\gyro.h
 stm32f40_41xxx\supersonic.o: ..\_Layer\laser.h
 stm32f40_41xxx\supersonic.o: ..\_Logic\line.h
 stm32f40_41xxx\supersonic.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+stm32f40_41xxx\supersonic.o: ..\Shell_H\SHELL.h
 stm32f40_41xxx\supersonic.o: ../magic.h
 stm32f40_41xxx\supersonic.o: ..\_Logic\point.h
 stm32f40_41xxx\supersonic.o: ..\MDK-ARM\UpHillOrDownHill.h
 stm32f40_41xxx\supersonic.o: ..\_Methond\SKILL.h
 stm32f40_41xxx\supersonic.o: ..\_Logic\line.h
+stm32f40_41xxx\supersonic.o: ..\Shell_H\SHELL.h
 stm32f40_41xxx\supersonic.o: ..\_Logic\point.h
 stm32f40_41xxx\supersonic.o: ..\MDK-ARM\UpHillOrDownHill.h
 stm32f40_41xxx\supersonic.o: ..\_Methond\SKILL.h
@@ -69,4 +71,5 @@ stm32f40_41xxx\supersonic.o: ..\MDK-ARM\UpHillOrDownHill.h
 stm32f40_41xxx\supersonic.o: ..\_Logic\motor_turn.h
 stm32f40_41xxx\supersonic.o: ..\MDK-ARM\UpHillOrDownHill.h
 stm32f40_41xxx\supersonic.o: ..\_Layer\supersonic.h
+stm32f40_41xxx\supersonic.o: ..\Shell_H\SHELL.h
 stm32f40_41xxx\supersonic.o: ..\Shell_H\SHELL.h

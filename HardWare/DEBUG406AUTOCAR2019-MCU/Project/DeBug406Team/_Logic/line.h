@@ -3,6 +3,7 @@
 #include "math.h"
 #include "gyro.h"
 #include "encoder.h"
+#include "SHELL.h"
 
 #include "magic.h"
 /**
@@ -53,6 +54,7 @@
 	void _BlockSpeed(void);
 	double _TrackingCoreAlgorithmInBridgeByButtom(void);
 	void _GoLineHighSpeed(void);
+	double _TrackingCoreAlgorithmOpenMV(void);
 	//测试函数
 	void _GoLineLowSpeedDownBridgeTest(void);
 	void _GoLine_UserAdjust(float LPWM,float RPWM);

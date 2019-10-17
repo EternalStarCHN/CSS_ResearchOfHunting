@@ -1,4 +1,5 @@
 #include "line.h"   /*giaogiao*/
+#include "SHELL.h"
 static float previous_errorByButtom = 0;
 static float previous_error = 0;
 extern int8_t LeftCountTimes;
@@ -30,6 +31,8 @@ uint8_t _Is_PID_DownBridge_Activated = 0;
 **14.桥上巡线误差获取 hwlBMBRgX9PfXqai
 **15.桥上巡线控制     dWC9IisdSQbtx8YR
 **16.桥上巡线执行     pM1n2uVWgICs85qb
+**17.OpenMV巡线控制   asfhakfcafja6sda
+**18.OpenMV巡线执行   asfhadkaiafhalad
 
 **17.带参数的正常速度巡线函数 BbVL9LNyaoFhbLws
 */
@@ -130,7 +133,7 @@ double _TrackingCoreAlgorithm(void)
 #ifdef Robot_2
   float Kp = 130.763, Ki = 8.5, Kd = 7.5;
 #endif
-  float error = 0, P = 0.0, I = 0., D = 0, PID_value = 0;
+  float error = 0, P = 0.0, I = 0.0, D = 0, PID_value = 0;
   error = _GetADCError();
   P = error;
   I = I + error;
@@ -138,6 +141,20 @@ double _TrackingCoreAlgorithm(void)
   PID_value = (Kp * P) + (Ki * I) + (Kd * D);
   previous_error = error;
   return PID_value;
+}
+
+/*OpenMV巡线控制的PID控制函数 asfhakfcafja6sda*/
+double _TrackingCoreAlgorithmOpenMV(void)
+{
+	float Kp = 0, Ki = 0, Kd = 0;
+	float error = 0, P = 0.0, I = 0, D = 0, PID_value = 0;
+	error = _DealRhoErrorSign();
+	P = error;
+	I = I + error;
+	D = error - previous_error;
+	PID_value = (Kp * P) + (Ki * I) + (Kd * D);
+  previous_error = error;
+	return PID_value;
 }
 /* 以中等速度巡线实际执行函数 ejke2AABCoexrDLj */
 void _GoLineMSpeed(void)

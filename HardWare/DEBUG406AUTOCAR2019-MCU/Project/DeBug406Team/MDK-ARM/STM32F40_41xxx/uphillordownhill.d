@@ -10,6 +10,7 @@ stm32f40_41xxx\uphillordownhill.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 stm32f40_41xxx\uphillordownhill.o: ..\_Layer\buttom.h
 stm32f40_41xxx\uphillordownhill.o: ../main.h
 stm32f40_41xxx\uphillordownhill.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+stm32f40_41xxx\uphillordownhill.o: ..\Shell_H\SHELL.h
 stm32f40_41xxx\uphillordownhill.o: ../magic.h
 stm32f40_41xxx\uphillordownhill.o: ..\_Layer\laser.h
 stm32f40_41xxx\uphillordownhill.o: ..\_Layer\serial.h
@@ -55,10 +56,12 @@ stm32f40_41xxx\uphillordownhill.o: ..\_Logic\cpu_test.h
 stm32f40_41xxx\uphillordownhill.o: ..\_Layer\motor.h
 stm32f40_41xxx\uphillordownhill.o: ..\_Layer\servo.h
 stm32f40_41xxx\uphillordownhill.o: ..\_Logic\line.h
+stm32f40_41xxx\uphillordownhill.o: ..\Shell_H\SHELL.h
 stm32f40_41xxx\uphillordownhill.o: ..\_Logic\point.h
 stm32f40_41xxx\uphillordownhill.o: ..\MDK-ARM\UpHillOrDownHill.h
 stm32f40_41xxx\uphillordownhill.o: ..\_Methond\SKILL.h
 stm32f40_41xxx\uphillordownhill.o: ..\_Logic\line.h
+stm32f40_41xxx\uphillordownhill.o: ..\Shell_H\SHELL.h
 stm32f40_41xxx\uphillordownhill.o: ..\_Logic\point.h
 stm32f40_41xxx\uphillordownhill.o: ..\MDK-ARM\UpHillOrDownHill.h
 stm32f40_41xxx\uphillordownhill.o: ..\_Methond\SKILL.h

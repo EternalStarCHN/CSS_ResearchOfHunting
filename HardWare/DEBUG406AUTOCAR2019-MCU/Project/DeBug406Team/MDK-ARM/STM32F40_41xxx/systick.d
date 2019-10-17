@@ -55,11 +55,13 @@ stm32f40_41xxx\systick.o: ..\_Layer\gyro.h
 stm32f40_41xxx\systick.o: ..\_Layer\laser.h
 stm32f40_41xxx\systick.o: ..\_Logic\line.h
 stm32f40_41xxx\systick.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+stm32f40_41xxx\systick.o: ..\Shell_H\SHELL.h
 stm32f40_41xxx\systick.o: ../magic.h
 stm32f40_41xxx\systick.o: ..\_Logic\point.h
 stm32f40_41xxx\systick.o: ..\MDK-ARM\UpHillOrDownHill.h
 stm32f40_41xxx\systick.o: ..\_Methond\SKILL.h
 stm32f40_41xxx\systick.o: ..\_Logic\line.h
+stm32f40_41xxx\systick.o: ..\Shell_H\SHELL.h
 stm32f40_41xxx\systick.o: ..\_Logic\point.h
 stm32f40_41xxx\systick.o: ..\MDK-ARM\UpHillOrDownHill.h
 stm32f40_41xxx\systick.o: ..\_Methond\SKILL.h
@@ -68,4 +70,5 @@ stm32f40_41xxx\systick.o: ..\_Logic\motor_turn.h
 stm32f40_41xxx\systick.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 stm32f40_41xxx\systick.o: ..\MDK-ARM\UpHillOrDownHill.h
 stm32f40_41xxx\systick.o: ..\_Layer\supersonic.h
+stm32f40_41xxx\systick.o: ..\Shell_H\SHELL.h
 stm32f40_41xxx\systick.o: ..\Shell_H\SHELL.h

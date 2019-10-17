@@ -56,11 +56,13 @@ stm32f40_41xxx\motor_turn.o: ..\_Layer\buttom.h
 stm32f40_41xxx\motor_turn.o: ..\_Layer\laser.h
 stm32f40_41xxx\motor_turn.o: ..\_Logic\line.h
 stm32f40_41xxx\motor_turn.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+stm32f40_41xxx\motor_turn.o: ..\Shell_H\SHELL.h
 stm32f40_41xxx\motor_turn.o: ../magic.h
 stm32f40_41xxx\motor_turn.o: ..\_Logic\point.h
 stm32f40_41xxx\motor_turn.o: ..\MDK-ARM\UpHillOrDownHill.h
 stm32f40_41xxx\motor_turn.o: ..\_Methond\SKILL.h
 stm32f40_41xxx\motor_turn.o: ..\_Logic\line.h
+stm32f40_41xxx\motor_turn.o: ..\Shell_H\SHELL.h
 stm32f40_41xxx\motor_turn.o: ..\_Logic\point.h
 stm32f40_41xxx\motor_turn.o: ..\MDK-ARM\UpHillOrDownHill.h
 stm32f40_41xxx\motor_turn.o: ..\_Methond\SKILL.h
@@ -70,4 +72,6 @@ stm32f40_41xxx\motor_turn.o: ..\MDK-ARM\UpHillOrDownHill.h
 stm32f40_41xxx\motor_turn.o: ..\_Layer\supersonic.h
 stm32f40_41xxx\motor_turn.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 stm32f40_41xxx\motor_turn.o: ..\Shell_H\SHELL.h
+stm32f40_41xxx\motor_turn.o: ..\Shell_H\SHELL.h
 stm32f40_41xxx\motor_turn.o: ..\_Logic\line.h
+stm32f40_41xxx\motor_turn.o: ..\Shell_H\SHELL.h

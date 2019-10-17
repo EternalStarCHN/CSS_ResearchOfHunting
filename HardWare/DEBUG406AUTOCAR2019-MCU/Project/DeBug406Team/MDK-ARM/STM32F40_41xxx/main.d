@@ -9,6 +9,7 @@ stm32f40_41xxx\main.o: ..\_Layer\buttom.h
 stm32f40_41xxx\main.o: ../main.h
 stm32f40_41xxx\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 stm32f40_41xxx\main.o: ..\_Layer\gyro.h
+stm32f40_41xxx\main.o: ..\Shell_H\SHELL.h
 stm32f40_41xxx\main.o: ../magic.h
 stm32f40_41xxx\main.o: ..\_Layer\laser.h
 stm32f40_41xxx\main.o: ..\_Layer\serial.h
@@ -54,10 +55,12 @@ stm32f40_41xxx\main.o: ..\_Logic\cpu_test.h
 stm32f40_41xxx\main.o: ..\_Layer\motor.h
 stm32f40_41xxx\main.o: ..\_Layer\servo.h
 stm32f40_41xxx\main.o: ..\_Logic\line.h
+stm32f40_41xxx\main.o: ..\Shell_H\SHELL.h
 stm32f40_41xxx\main.o: ..\_Logic\point.h
 stm32f40_41xxx\main.o: ..\MDK-ARM\UpHillOrDownHill.h
 stm32f40_41xxx\main.o: ..\_Methond\SKILL.h
 stm32f40_41xxx\main.o: ..\_Logic\line.h
+stm32f40_41xxx\main.o: ..\Shell_H\SHELL.h
 stm32f40_41xxx\main.o: ..\_Logic\point.h
 stm32f40_41xxx\main.o: ..\MDK-ARM\UpHillOrDownHill.h
 stm32f40_41xxx\main.o: ..\_Methond\SKILL.h

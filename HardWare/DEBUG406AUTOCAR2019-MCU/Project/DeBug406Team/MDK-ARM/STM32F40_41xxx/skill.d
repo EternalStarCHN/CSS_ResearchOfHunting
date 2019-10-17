@@ -49,13 +49,15 @@ stm32f40_41xxx\skill.o: ..\_Logic\line.h
 stm32f40_41xxx\skill.o: ..\_Layer\buttom.h
 stm32f40_41xxx\skill.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 stm32f40_41xxx\skill.o: ..\_Layer\gyro.h
+stm32f40_41xxx\skill.o: ..\Shell_H\SHELL.h
+stm32f40_41xxx\skill.o: ../main.h
 stm32f40_41xxx\skill.o: ../magic.h
 stm32f40_41xxx\skill.o: ..\_Layer\laser.h
 stm32f40_41xxx\skill.o: ..\_Layer\serial.h
 stm32f40_41xxx\skill.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
-stm32f40_41xxx\skill.o: ../main.h
 stm32f40_41xxx\skill.o: ..\_Layer\board.h
 stm32f40_41xxx\skill.o: ..\_Logic\line.h
+stm32f40_41xxx\skill.o: ..\Shell_H\SHELL.h
 stm32f40_41xxx\skill.o: ..\_Logic\point.h
 stm32f40_41xxx\skill.o: ..\MDK-ARM\UpHillOrDownHill.h
 stm32f40_41xxx\skill.o: ..\_Methond\SKILL.h
@@ -65,6 +67,7 @@ stm32f40_41xxx\skill.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 stm32f40_41xxx\skill.o: ..\_Layer\supersonic.h
 stm32f40_41xxx\skill.o: ..\Shell_H\SHELL.h
 stm32f40_41xxx\skill.o: ..\_Logic\line.h
+stm32f40_41xxx\skill.o: ..\Shell_H\SHELL.h
 stm32f40_41xxx\skill.o: ..\_Logic\point.h
 stm32f40_41xxx\skill.o: ..\MDK-ARM\UpHillOrDownHill.h
 stm32f40_41xxx\skill.o: ..\MDK-ARM\UpHillOrDownHill.h

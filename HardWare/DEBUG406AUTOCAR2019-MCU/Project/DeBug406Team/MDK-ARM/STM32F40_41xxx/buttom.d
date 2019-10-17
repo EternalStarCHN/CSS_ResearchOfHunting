@@ -9,11 +9,12 @@ stm32f40_41xxx\buttom.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 stm32f40_41xxx\buttom.o: ..\_Layer\buttom.h
 stm32f40_41xxx\buttom.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 stm32f40_41xxx\buttom.o: ..\_Layer\gyro.h
+stm32f40_41xxx\buttom.o: ..\Shell_H\SHELL.h
+stm32f40_41xxx\buttom.o: ../main.h
 stm32f40_41xxx\buttom.o: ../magic.h
 stm32f40_41xxx\buttom.o: ..\_Layer\laser.h
 stm32f40_41xxx\buttom.o: ..\_Layer\serial.h
 stm32f40_41xxx\buttom.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
-stm32f40_41xxx\buttom.o: ../main.h
 stm32f40_41xxx\buttom.o: ../../../Libraries/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_iwdg.h
 stm32f40_41xxx\buttom.o: ../../../Libraries/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h
 stm32f40_41xxx\buttom.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\core_cm4.h
@@ -55,10 +56,12 @@ stm32f40_41xxx\buttom.o: ..\_Logic\cpu_test.h
 stm32f40_41xxx\buttom.o: ..\_Layer\motor.h
 stm32f40_41xxx\buttom.o: ..\_Layer\servo.h
 stm32f40_41xxx\buttom.o: ..\_Logic\line.h
+stm32f40_41xxx\buttom.o: ..\Shell_H\SHELL.h
 stm32f40_41xxx\buttom.o: ..\_Logic\point.h
 stm32f40_41xxx\buttom.o: ..\MDK-ARM\UpHillOrDownHill.h
 stm32f40_41xxx\buttom.o: ..\_Methond\SKILL.h
 stm32f40_41xxx\buttom.o: ..\_Logic\line.h
+stm32f40_41xxx\buttom.o: ..\Shell_H\SHELL.h
 stm32f40_41xxx\buttom.o: ..\_Logic\point.h
 stm32f40_41xxx\buttom.o: ..\MDK-ARM\UpHillOrDownHill.h
 stm32f40_41xxx\buttom.o: ..\_Methond\SKILL.h

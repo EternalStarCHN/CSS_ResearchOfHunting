@@ -11,10 +11,11 @@ stm32f40_41xxx\point.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 stm32f40_41xxx\point.o: ..\_Layer\buttom.h
 stm32f40_41xxx\point.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 stm32f40_41xxx\point.o: ..\_Layer\gyro.h
+stm32f40_41xxx\point.o: ..\Shell_H\SHELL.h
+stm32f40_41xxx\point.o: ../main.h
 stm32f40_41xxx\point.o: ../magic.h
 stm32f40_41xxx\point.o: ..\_Layer\serial.h
 stm32f40_41xxx\point.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
-stm32f40_41xxx\point.o: ../main.h
 stm32f40_41xxx\point.o: ../../../Libraries/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_iwdg.h
 stm32f40_41xxx\point.o: ../../../Libraries/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h
 stm32f40_41xxx\point.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\core_cm4.h
@@ -56,10 +57,12 @@ stm32f40_41xxx\point.o: ..\_Logic\cpu_test.h
 stm32f40_41xxx\point.o: ..\_Layer\motor.h
 stm32f40_41xxx\point.o: ..\_Layer\servo.h
 stm32f40_41xxx\point.o: ..\_Logic\line.h
+stm32f40_41xxx\point.o: ..\Shell_H\SHELL.h
 stm32f40_41xxx\point.o: ..\_Logic\point.h
 stm32f40_41xxx\point.o: ..\MDK-ARM\UpHillOrDownHill.h
 stm32f40_41xxx\point.o: ..\_Methond\SKILL.h
 stm32f40_41xxx\point.o: ..\_Logic\line.h
+stm32f40_41xxx\point.o: ..\Shell_H\SHELL.h
 stm32f40_41xxx\point.o: ..\_Logic\point.h
 stm32f40_41xxx\point.o: ..\MDK-ARM\UpHillOrDownHill.h
 stm32f40_41xxx\point.o: ..\_Methond\SKILL.h

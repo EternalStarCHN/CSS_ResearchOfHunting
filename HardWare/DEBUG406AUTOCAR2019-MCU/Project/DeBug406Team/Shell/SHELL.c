@@ -3,10 +3,13 @@ int Start=1;
 int Stop=0;
 uint8_t Command;
 uint8_t motion;
-uint8_t rho_ss;
-uint8_t rho;
-uint8_t theta_ss;
-uint8_t theta;
+uint8_t rho_ss;//距离符号1/0
+uint8_t rho;//距离误差
+uint8_t theta_ss;//角度符号1/0
+uint8_t theta;//角度误差
+double Rho=0;
+double Theta=0;
+
 int i=0;
 int Crycle=0;
 extern volatile uint8_t _Command[5];
@@ -38,6 +41,9 @@ void Match(void)
 		InitFlag();
 		Encoder_StopDistantCount();
 	}
+	
+
+	
 //	if(Start == 0 && Stop == 0)
 //	{
 //		switch(Command)
@@ -75,3 +81,31 @@ void Match(void)
 //		Stop=0;
 //	}
 }
+
+
+double _DealRhoErrorSign(void)
+{
+		if(rho_ss == 1)
+		{
+			Rho=rho;
+		}
+		else if(rho_ss == 0)
+		{
+			Rho=-rho;
+		}
+		return Rho;
+}
+	
+double _DealThetaErrorSign(void)
+{
+		if(theta_ss == 1)
+		{
+			Theta=theta;
+		}
+		else if(theta_ss == 0)
+		{
+			Theta=-theta;
+		}
+		return Theta;
+}
+	
