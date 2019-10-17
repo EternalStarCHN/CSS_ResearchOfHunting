@@ -5,7 +5,7 @@ void Match(void);
 void _Timer(void);
 extern int Start;
 extern int Stop;
-double _ChangeRhoErrorSign(void);
+float _ChangeRhoErrorSign(void);
 double _ChangThetaErrorSign(void);
 
 #endif
