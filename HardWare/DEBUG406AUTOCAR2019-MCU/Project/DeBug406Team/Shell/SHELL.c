@@ -24,21 +24,22 @@ void _Timer(void)
 void Match(void)
 {
 	//printf("%d",Is_Command_Updated());
-	if(Is_Command_Updated()==1&&Start==1)
+	if(Is_Command_Updated() == 1 && Start == 1)
 	{
 		rho_ss = _Command[0];
 		rho = _Command[1];
 		theta_ss= _Command[2];
 		theta = _Command[3];		
-		Start=0;
+//		Start = 0;
+		Start = 1;
 		UpdateMotorState(MOTOR_FRONT);
 		SetMotorDutyRatio(0.01,0);
 		Clear_CommandUpdate_PendingBit();
 		InitFlag();
 		Encoder_StopDistantCount();
 	}
-	if(Start==0&&Stop==0)
-	{
+//	if(Start == 0 && Stop == 0)
+//	{
 //		switch(Command)
 //		{
 //			case 0x00 :TestOnly();break;
@@ -65,12 +66,12 @@ void Match(void)
 //			case 0x0E :UpHand();break; 
 //			case 0x0A :ShakeHead();break; //摇头；
 //		}	
-	}
-	if(Stop==1)
-	{
+//	}
+//	if(Stop==1)
+//	{
 //		UpdateMotorState(MOTOR_STOP);
 //		printf("0xAB");
 //		Start=1;
 //		Stop=0;
-	}
+//	}
 }
