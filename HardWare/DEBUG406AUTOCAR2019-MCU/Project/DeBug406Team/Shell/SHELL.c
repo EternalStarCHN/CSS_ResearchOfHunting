@@ -3,9 +3,9 @@ int Start=1;
 int Stop=0;
 uint8_t Command;
 uint8_t motion;
-uint8_t rho_ss;//距离符号1/0
-uint8_t rho_decade;//距离误差十位
-uint8_t rho_unit;//距离误差个位
+volatile uint8_t rho_ss;//距离符号1/0
+volatile uint8_t rho_decade;//距离误差十位
+volatile uint8_t rho_unit;//距离误差个位
 double Rho=0;
 double Theta=0;
 
